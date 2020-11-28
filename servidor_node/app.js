@@ -1,6 +1,6 @@
-let http = require('http');
-let fs   = require('fs')
-let path = require('path');
+const http = require('http');
+const fs   = require('fs')
+const path = require('path');
 
 let servidor = http.createServer(function(request, response) {
     let filePath = request.url;

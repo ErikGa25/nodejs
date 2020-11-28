@@ -4,7 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="description" content="Sass, CSS, HTML">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>Servidor Node JS</title>
+        <title>Servidor Node JS</title>
+        <link rel="stylesheet" type="text/css" href="/public/assets/css/lightbox.min.css"></script>
 		<link rel="stylesheet" type="text/css" href="/public/assets/css/styles.css">
 	</head>
 
@@ -31,7 +32,9 @@
                     </div>
                 </div>
                 <div id="imagen">
-                    <img src="/public/assets/img/404.jpg" />
+                    <a href="/public/assets/img/404.jpg" data-lightbox="image-1" data-title="404 Not Found">
+                        <img src="/public/assets/img/404.jpg" />
+                    </a>
                 </div>
             </div>
             <aside>
@@ -47,6 +50,7 @@
             </div>
         </footer>
 
+        <script type="text/javascript" src="/public/assets/js/lightbox-plus-jquery.min.js"></script>
         <script type="text/javascript" src="/public/assets/js/script.js"></script>
 	</body>
 </html>
