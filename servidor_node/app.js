@@ -10,7 +10,7 @@ let servidor = http.createServer(function(request, response) {
         filePath = '/public/views/index.html';
     }
 
-    filePath = __dirname+filePath;
+    filePath = __dirname + filePath;
     fileExtension = path.extname(filePath);
 
     switch (fileExtension) {
