@@ -28,27 +28,74 @@ app.get('/', (request, response) => {
 
 // listar todos los registros
 app.get('/all', (request, response) => {
-    response.send('Todos');
+    let sql = 'SELECT * FROM usuarios';
+
+    connection.query(sql, (error, results) => {
+        let total = results.length;    
+        
+        if(error) throw error;
+    
+        if(total > 0){
+            response.json(results);
+        } else {
+            response.send('No hay registros.');
+        }
+    });
 });
 
 // listar un registro
 app.get('/one/:id', (request, response) => {
-    response.send('Uno');
+    let {id} = request.params;
+    let sql = 'SELECT * FROM usuarios WHERE id = ' + id;
+
+    connection.query(sql, (error, results) => {
+        let total = results.length;    
+        
+        if(error) throw error;
+    
+        if(total > 0){
+            response.json(results);
+        } else {
+            response.send('No hay registros.');
+        }
+    });
 });
 
 // agregar un registro
 app.post('/add', (request, response) => {
-    response.send('Agregar');
+    let sql = 'INSERT INTO usuarios SET ?';
+    let usuariosObj = {
+        nombre : request.body.nombre,
+        ciudad : request.body.ciudad
+    };
+
+    connection.query(sql, usuariosObj, error => {
+        if(error) throw error;
+        response.send('Se creo el usuario.');
+    });
 });
 
 // actualizar un registro
 app.put('/update/:id', (request, response) => {
-    response.send('Actualizar');
+    let {id} = request.params;
+    let {nombre, ciudad} = request.body;
+    let sql = `UPDATE usuarios SET nombre = '${nombre}', ciudad = '${ciudad}' WHERE id = ${id}`;
+
+    connection.query(sql, (error, results) => {
+        if(error) throw error;
+        response.send('Se actualizó el usuario.');
+    });
 });
 
 // eliminar un registro
 app.delete('/delete/:id', (request, response) => {
-    response.send('Eliminar');
+    let { id } = request.params;
+    let sql = `DELETE FROM usuarios WHERE id = ${id}`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        response.send('Se elimino el usuario.');
+    });
 });
 
 app.listen(PORT, () => console.log('Servidor iniciado ....'));
