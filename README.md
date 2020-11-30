@@ -1,6 +1,6 @@
 ### Instrucciones
 
-Para ejecutar los proyectos ejecutar los siguientes comandos:
+Para lanzar los proyectos ejecutar los siguientes comandos:
 
 1. `npm install`
 2. `npm start`
