@@ -5,6 +5,9 @@ const mysql   = require('mysql');
 const myConnection = require('express-myconnection');
 const app     = express();
 
+// importing routes
+const customerRoutes = require('./routes/customer');
+
 // settings
 app.set('port', process.env.PORT || 3001);
 app.set('view engine', 'ejs');
@@ -21,7 +24,10 @@ app.use(myConnection(mysql, {
 }, 'single'));
 
 // routes
+app.use('/', customerRoutes);
 
+// static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.listen(app.get('port'), () => console.log('Servidor iniciado ...'));
