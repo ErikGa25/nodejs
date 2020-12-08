@@ -15,7 +15,23 @@ controller.list = (req, res) => {
 };
 
 controller.save = (req, res) => {
+    let data = req.body;
 
+    req.getConnection((error, conn) => {
+        conn.query('INSERT INTO customer set ?', [data], (error, customer) => {
+            res.redirect('/');
+        });
+    });
+};
+
+controller.delete = (req, res) => {
+    let {id} = req.params; //1.14
+
+    req.getConnection((error, conn) => {
+        conn.query('DELETE FROM customer WHERE id = ?', [id], (error, customer) => {
+            res.redirect('/');
+        });
+    });
 };
 
 module.exports = controller;
