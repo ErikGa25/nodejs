@@ -24,8 +24,31 @@ controller.save = (req, res) => {
     });
 };
 
+controller.edit = (req, res) => {
+    let {id} = req.params;
+
+    req.getConnection((error, conn) => {
+        conn.query('SELECT * FROM customer WHERE id = ?', [id], (error, customer) => {
+            res.render('customer_edit', {
+                data: customer[0] 
+            });
+        });
+    });
+};
+
+controller.update = (req, res) => {
+    let {id} = req.params;
+    let newCustomer = req.body;
+
+    req.getConnection((error, conn) => {
+        conn.query('UPDATE customer set ? WHERE id = ?', [newCustomer, id], (error, customer) =>{
+            res.redirect('/');
+        });
+    });
+};
+
 controller.delete = (req, res) => {
-    let {id} = req.params; //1.14
+    let {id} = req.params;
 
     req.getConnection((error, conn) => {
         conn.query('DELETE FROM customer WHERE id = ?', [id], (error, customer) => {
