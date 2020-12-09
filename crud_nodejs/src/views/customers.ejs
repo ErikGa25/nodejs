@@ -35,20 +35,20 @@
 
         <div class="col-md-5">
             <div class="card card-body">
-                <form action="/add" method="POST">
+                <form name="form_node" action="/add" method="POST">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Nombre" class="form-control" autofocus>
+                        <input type="text" name="name" id="name" placeholder="Nombre" class="form-control" autofocus>
                     </div>
                     
                     <div class="form-group">
-                        <input type="text" name="address" placeholder="Dirección" class="form-control">
+                        <input type="text" name="address" id="address" placeholder="Dirección" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="phone" placeholder="Teléfono" class="form-control">
+                        <input type="text" name="phone" id="phone" placeholder="Teléfono" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                    <button type="button" class="btn btn-primary" name="btnEnviar">Guardar Cliente</button>
                 </form>
             </div>
         </div>
