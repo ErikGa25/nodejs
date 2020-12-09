@@ -29,9 +29,13 @@ controller.edit = (req, res) => {
 
     req.getConnection((error, conn) => {
         conn.query('SELECT * FROM customer WHERE id = ?', [id], (error, customer) => {
-            res.render('customer_edit', {
-                data: customer[0] 
-            });
+            if(customer.length == 0){
+                res.redirect('/');
+            } else {
+                res.render('customer_edit', {
+                    data: customer[0] 
+                });
+            }
         });
     });
 };
@@ -41,7 +45,7 @@ controller.update = (req, res) => {
     let newCustomer = req.body;
 
     req.getConnection((error, conn) => {
-        conn.query('UPDATE customer set ? WHERE id = ?', [newCustomer, id], (error, customer) =>{
+        conn.query('UPDATE customer set ? WHERE id = ?', [newCustomer, id], (error, customer) => {
             res.redirect('/');
         });
     });
